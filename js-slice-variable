@@ -1,0 +1,3 @@
+function() {
+  return {{sua variavel}}.slice(6);
+}
