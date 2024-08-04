@@ -1,0 +1,17 @@
+function() {
+  var url = window.location.href;
+  var parsedUrl = new URL(url);
+
+  // Verifica se o protocolo é HTTPS e se o domínio começa com "www."
+  if (parsedUrl.protocol !== 'https:' || !parsedUrl.hostname.startsWith('www.')) {
+    parsedUrl.protocol = 'https:';  // Força HTTPS
+    parsedUrl.hostname = 'www.' + parsedUrl.hostname; // Adiciona "www."
+  }
+
+  var pathParts = parsedUrl.pathname.split('/');
+  var slug = pathParts.filter(function(part) {
+    return part !== '';
+  }).join('/');
+
+  return parsedUrl.protocol + '//' + parsedUrl.hostname + '/' + slug; // Retorna a URL completa com as modificações
+}
