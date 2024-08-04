@@ -1,0 +1,24 @@
+function formatFirstNameSetCookie() {
+  // Substitua pela variável do seu formulário
+  var nameField = document.querySelector('[id="fullname"]');
+  
+  // Verifica se nameField não é nulo ou indefinido e se contém um valor não vazio
+  if (nameField && nameField.value.trim() !== '') {
+    var fullname = nameField.value.trim().toLowerCase();  // Convertendo o nome para letras minúsculas e removendo espaços em branco
+
+    // Dividindo o nome em partes usando o espaço em branco para separar
+    var names = fullname.split(' ');
+
+    // Capturando apenas o primeiro nome
+    var firstName = names[0];
+
+    // Define o valor em um cookie com validade de 30 dias a partir da data atual
+    var expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 30); // 30 dias a partir de agora
+    document.cookie = "LeadFirstName=" + encodeURIComponent(firstName) + "; expires=" + expirationDate.toUTCString() + "; path=/";
+
+    return firstName;
+  } else {
+    return undefined; 
+  }
+}
